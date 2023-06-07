@@ -3,7 +3,8 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Vinogradova\\Sanitizer\\": "src/"
+            "Sanitizer\\": "src/",
+            "Sanitizer\\Tests\\": "tests"
         }
     },
     "authors": [
@@ -14,5 +15,11 @@
     ],
     "require": {
         "php": ">=8.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.26"
+    },
+    "scripts": {
+        "test": "phpunit tests"
     }
 }
