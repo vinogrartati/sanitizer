@@ -1,4 +1,7 @@
 # Sanitizer
+[![Maintainability](https://api.codeclimate.com/v1/badges/cd7d9d95af19f850541d/maintainability)](https://codeclimate.com/github/vinogrartati/sanitizer/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/cd7d9d95af19f850541d/test_coverage)](https://codeclimate.com/github/vinogrartati/sanitizer/test_coverage)
 
 Предположим, что перед нами стоит задача обработать HTTP-запрос от клиента или ответ от
 стороннего API, содержащий данные в формате JSON.
