@@ -22,5 +22,10 @@
     },
     "scripts": {
         "test": "phpunit tests"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
     }
 }
