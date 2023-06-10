@@ -1,6 +1,7 @@
 {
     "name": "vinogradova/sanitizer",
     "type": "library",
+    "description": "Sanitizer - валидатор для струкртур данных из формата [key => value]",
     "autoload": {
         "psr-4": {
             "Sanitizer\\": "src/",
