@@ -1,14 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sanitizer\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Sanitizer\Validator;
 
 /**
- * Класс для тестирования методов Валидатора, к которому обращается Санитайзер
+ * Тесты для валидатора.
  */
 class ValidatorTest extends TestCase {
+	/**
+	 * Тестирование строк.
+	 *
+	 * @return void
+	 */
 	public function testString(): void {
 		$data     = 'test';
 		$typeData = 'string';
@@ -23,7 +30,12 @@ class ValidatorTest extends TestCase {
 		$this->assertEquals($text, (new Validator($data, $typeData))->validate(), 'Неизвестный тип');
 	}
 
-	public function testInteger() {
+	/**
+	 * Тестирование целых чисел.
+	 *
+	 * @return void
+	 */
+	public function testInteger(): void {
 		$data     = 1234;
 		$typeData = 'integer';
 		$this->assertEquals($data, (new Validator($data, $typeData))->validate(), 'Позитивный сценарий');
@@ -33,7 +45,12 @@ class ValidatorTest extends TestCase {
 		$this->assertEquals($text, (new Validator($data, $typeData))->validate(), 'Неверный тип');
 	}
 
-	public function testFloat() {
+	/**
+	 * Тестирование чисел с плавающей точкой.
+	 *
+	 * @return void
+	 */
+	public function testFloat(): void {
 		$data     = 1234.0;
 		$typeData = 'float';
 		$this->assertEquals($data, (new Validator($data, $typeData))->validate(), 'Позитивный сценарий');
@@ -47,7 +64,12 @@ class ValidatorTest extends TestCase {
 		$this->assertEquals($text, (new Validator($data, $typeData))->validate(), 'Неверный тип');
 	}
 
-	public function testPhone() {
+	/**
+	 * Тестирование номеров телефона.
+	 *
+	 * @return void
+	 */
+	public function testPhone(): void {
 		$data        = '+7(999)333-22-55';
 		$typeData    = 'phone';
 		$expectation = '79993332255';
@@ -100,7 +122,12 @@ class ValidatorTest extends TestCase {
 		$this->assertEquals($expectation, (new Validator($data, $typeData))->validate(), 'Неверный формат телефона v9');
 	}
 
-	public function testArray() {
+	/**
+	 * Тестирование массивов.
+	 *
+	 * @return void
+	 */
+	public function testArray(): void {
 		$data     = ['test1', 'test2', 'test3'];
 		$typeData = 'array';
 		$this->assertEquals($data, (new Validator($data, $typeData))->validate(), 'Позитивный сценарий');
@@ -115,7 +142,12 @@ class ValidatorTest extends TestCase {
 		$this->assertEquals($expectation, (new Validator($data, $typeData))->validate(), 'Передана структура');
 	}
 
-	public function testObject() {
+	/**
+	 * Тестирование структур.
+	 *
+	 * @return void
+	 */
+	public function testObject(): void {
 		$data     = ['key' => 'value', 'key2' => 'value2'];
 		$typeData = ['key' => 'string', 'key2' => 'value2'];
 		$this->assertEquals($data, (new Validator($data, $typeData))->validate(), 'Позитивный сценарий');
@@ -147,7 +179,12 @@ class ValidatorTest extends TestCase {
 		$this->assertEquals($expectation, (new Validator($data, $typeData))->validate(), 'Несоответствие ключей');
 	}
 
-	public function testUnknownType() {
+	/**
+	 * Тестирование неизвестных типов
+	 *
+	 * @return void
+	 */
+	public function testUnknownType(): void {
 		$data        = 123;
 		$typeData    = 'double';
 		$expectation = 'Неизвестный тип данных: ' . $typeData . '.';

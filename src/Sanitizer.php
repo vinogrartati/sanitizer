@@ -4,23 +4,36 @@ declare(strict_types=1);
 
 namespace Sanitizer;
 
+/**
+ * Обработчик переданных пользователем данных.
+ */
 class Sanitizer {
+	/**
+	 * @param array $data     Данные
+	 * @param array $typeData Типы данных
+	 */
+	public function __construct(public array $data, public array $typeData) {}
 
-	public array $data;
-	public array $typeData;
-
-	public function __construct($data, $typeData) {
-		$this->data     = $data;
-		$this->typeData = $typeData;
-	}
-
-	public function sanitize() {
+	/**
+	 * Метод для запуска обработки данных.
+	 *
+	 * @return array
+	 */
+	public function sanitize(): array {
 		return $this->createResultData($this->data, $this->typeData);
 	}
 
-	private function createResultData($array, $typeData) {
+	/**
+	 * Обработка и валидация переданных данных.
+	 *
+	 * @param array $data     Данные
+	 * @param array $typeData Типы данных
+	 *
+	 * @return array
+	 */
+	private function createResultData(array $data, array $typeData): array {
 		$acc = [];
-		foreach ($array as $key => $value) {
+		foreach ($data as $key => $value) {
 			$typeValue = $typeData[$key] ?? $typeData[0] ?? null;
 			$validateResult = (new Validator($value, $typeValue))->validate();
 
