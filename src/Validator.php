@@ -165,10 +165,13 @@ class Validator {
 		$keysDiff   = array_diff($keys, $this->objectKeys);
 		$objectDiff = array_diff($this->objectKeys, $keys);
 		if (count($keysDiff) || count($objectDiff)) {
+			$diffs = [];
+			$diffs[] = (count($keysDiff)   ? ('В структуре отсутствуют ключи: ' . implode(', ', $keysDiff) . '.')      : null);
+			$diffs[] = (count($objectDiff) ? ('В типах данных отсутствуют ключи: ' . implode(', ', $objectDiff) . '.') : null);
+
 			return 'Ключи структуры не совпадают с ключами в типах данных. ' .
-				(count($keysDiff)   ? 'В структуре отсутствуют ключи: ' . implode(', ', $keysDiff) . '.' : '') .
-				(count($keysDiff) && count($objectDiff) ? ' ' : '') . // todo проще сделать
-				(count($objectDiff) ? 'В типах данных отсутствуют ключи: ' . implode(', ', $objectDiff) . '.' : '');
+				implode(' ', array_filter($diffs))
+			;
 		}
 
 		return $this->value;
